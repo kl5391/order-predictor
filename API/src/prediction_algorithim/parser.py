@@ -1,12 +1,16 @@
 import csv;
 
 class EntryObject:
-    def __init__(self, Ticker, Type, Quantity, Price, Amount):
+      def __init__(self, Ticker, Type, Quantity, Price, Amount):
           self.Ticker = Ticker
           self.Type = Type
           self.Quantity = Quantity
           self.Price = Price
           self.Amount = Amount
+
+      def __str__(self):
+           return f"Ticker: {self.Ticker}\nOrder Type: {self.Type}\nOrder Quantity:{self.Quantity}\nOrder Price:{self.Price}Order Amount:{self.Amount}"
+           
     
 
 def getEntryObjects(path = None):
@@ -17,13 +21,19 @@ def getEntryObjects(path = None):
         with open(path, newline='') as csvfile:
             reader = csv.reader(csvfile)
             header = next(reader)
-            indexes = {"ticker": header.index('Instrument'), "type": header.index('Trans_Code'), 
-                            "quantity": header.index('Quantity'), "price": header.index('Price'), "amount": header.index('Amount')}
+            indexes = [header.index('Instrument'), header.index('Trans Code'), 
+                            header.index('Quantity'), header.index('Price'), header.index('Amount')]
             for entry in reader:
-                  parsedTrades.append(EntryObject(entry[indexes['ticker']], entry[indexes['type']], entry[indexes['amount']], entry[indexes['price']], entry[indexes['amount']]))
+                  try:
+                        parsedTrades.append(EntryObject(entry[indexes[0]], entry[indexes[1]], entry[indexes[2]], entry[indexes[3]], entry[indexes[4]]))
+                  except IndexError:
+                        continue
             return parsedTrades
     except FileNotFoundError:
           print('A file with this path could not be found')
 
 if __name__ == '__main__':
-      getEntryObjects()
+      response = getEntryObjects()
+      if (response):
+           for entry in response:
+                print(str(entry) + "\nNEXT ORDER")
