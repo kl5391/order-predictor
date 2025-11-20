@@ -1,8 +1,5 @@
 import csv
 
-# For easy testing
-test_path = "/Users/kylelong/Downloads/RH.csv"
-
 
 class EntryObject:
     def __init__(self, Ticker, Type, Quantity, Price, Amount):
@@ -55,10 +52,3 @@ def getEntryObjects(path=None):
             return parsedTrades
     except FileNotFoundError:
         print("A file with this path could not be found")
-
-
-if __name__ == "__main__":
-    response = getEntryObjects(test_path)
-    if response:
-        for entry in response:
-            print(str(entry))
