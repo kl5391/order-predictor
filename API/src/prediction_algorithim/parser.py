@@ -6,16 +6,18 @@ test_path = "/Users/kylelong/Downloads/RH.csv"
 
 class EntryObject:
     def __init__(self, Ticker, Type, Quantity, Price, Amount):
-        if Type == "ACH":
-            raise TypeError("Unspported type will not impact model decisions")
         self.Ticker = Ticker
         self.Type = Type
         self.Quantity = Quantity
         self.Price = Price
         self.Amount = Amount
+        if self.Ticker == "":
+            raise TypeError(
+                f"Incompatible data. Entry will not impact model {self.Ticker}"
+            )
 
     def __str__(self):
-        return f"Ticker: {self.Ticker} Order Type: {self.Type} Order Quantity: {self.Quantity} Order Price: {self.Price}Order Amount: {self.Amount}"
+        return f"Ticker: {self.Ticker} Order Type: {self.Type} Order Quantity: {self.Quantity} Order Price: {self.Price} Order Amount: {self.Amount}"
 
 
 def getEntryObjects(path=None):
@@ -37,16 +39,18 @@ def getEntryObjects(path=None):
                 try:
                     parsedTrades.append(
                         EntryObject(
-                            entry[indexes['ticker']],
-                            entry[indexes['type']],
-                            entry[indexes['quantity']],
-                            entry[indexes['price']],
-                            entry[indexes['amount']],
+                            entry[indexes["ticker"]],
+                            entry[indexes["type"]],
+                            entry[indexes["quantity"]],
+                            entry[indexes["price"]],
+                            entry[indexes["amount"]],
                         )
                     )
                 except TypeError:
+                    # has some form of incomtabible type
                     continue
                 except IndexError:
+                    # invalid entry, does not contain necessary data
                     continue
             return parsedTrades
     except FileNotFoundError:
