@@ -22,9 +22,6 @@ def getEntryObjects(path = None):
             for entry in reader:
                   parsedTrades.append(EntryObject(entry[indexes['ticker']], entry[indexes['type']], entry[indexes['amount']], entry[indexes['price']], entry[indexes['amount']]))
             return parsedTrades
-                    
-                          
-                    
     except FileNotFoundError:
           print('A file with this path could not be found')
 
