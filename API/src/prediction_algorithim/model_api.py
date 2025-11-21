@@ -1,8 +1,9 @@
-from openai import OpenAI
+from google import genai
+from google.genai import types
 from parser import getEntryObjects
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
-client = OpenAI()
+client = genai.Client()
 
 
 # For easy testing
@@ -10,7 +11,7 @@ test_path = "/Users/kylelong/Downloads/RH.csv"
 
 
 class TickerSet(BaseModel):
-    tickers: list[str]
+    tickers: list[str] = Field(description="List of recommended stock tickers based on submitted data")
 
 
 def userAnalysis(path):
@@ -18,20 +19,13 @@ def userAnalysis(path):
     entryString = ""
     for entry in entryObjects:
         entryString += f"{entry}, "
-    model_response = client.responses.parse(
-        model="gpt-3.5-turbo",
-        tools=[{"type": "web_search"}],
-        input=[
-            {
-                "role": "system",
-                "content": "these are trades submitted by a user. you need to determine a list of accetable tickers to suggest to the user based on the trades they "
-                "have provided you",
-            },
-            {"role": "user", "content": entryString},
-        ],
-        text_format=TickerSet,
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=entryString,
+        config=types.GenerateContentConfig(
+        system_instruction="You are to recommend stock tickers based specifically on the submitted users trading patterns", response_mime_type="application/json", 
+        response_json_schema=TickerSet.model_json_schema()),
     )
-    return model_response.output_parsed
 
 
 if __name__ == "__main__":
