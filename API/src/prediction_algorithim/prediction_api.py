@@ -30,12 +30,14 @@ def userAnalysis(path):
         ),
     )
     tickerSet = TickerSet.model_validate_json(response.text)
+    
     tickerExamanation(tickerSet.tickers, getEntryTickers(path))
 
 
 def tickerExamanation(suggestedTickers, userTickers):
     userData = getTickerData(userTickers)
     suggestedData = getTickerData(suggestedTickers)
+    print(suggestedData)
 
 
 if __name__ == "__main__":

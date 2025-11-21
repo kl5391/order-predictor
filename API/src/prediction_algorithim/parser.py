@@ -65,7 +65,8 @@ def getEntryTickers(path=None):
             indexes = {"ticker": header.index("Instrument")}
             for entry in reader:
                 try:
-                    parsedTrades.append(entry[indexes["ticker"]])
+                    if entry[indexes["ticker"]] != "":
+                        parsedTrades.append(entry[indexes["ticker"]])
                 except TypeError:
                     # has some form of incomtabible type
                     continue
