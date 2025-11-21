@@ -1,6 +1,6 @@
 from google import genai
 from google.genai import types
-from parser import getEntryObjects
+from parser import getEntryObjects,getEntryTickers
 from pydantic import BaseModel, Field
 from stock_data import getTickerData
 
@@ -30,15 +30,14 @@ def userAnalysis(path):
         ),
     )
     tickerSet = TickerSet.model_validate_json(response.text)
-    return tickerSet.tickers
+    tickerExamanation(tickerSet.tickers, getEntryTickers(path))
 
-def tickerExamanation(tickers):
-    #implement function call that determines 
-    return None
+
+def tickerExamanation(suggestedTickers, userTickers):
+    userData = getTickerData(userTickers)
+    suggestedData = getTickerData(suggestedTickers)
 
 
 if __name__ == "__main__":
+    userPath = getEntryObjects(test_path)
     callResponse = userAnalysis(test_path)
-    data = getTickerData(callResponse)
-    for row in data:
-        print(row)

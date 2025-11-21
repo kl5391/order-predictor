@@ -52,3 +52,26 @@ def getEntryObjects(path=None):
             return parsedTrades
     except FileNotFoundError:
         print("A file with this path could not be found")
+
+
+def getEntryTickers(path=None):
+    parsedTrades = []
+    if path == None:
+        path = input("Input file path to parse\nPath: ")
+    try:
+        with open(path, newline="") as csvfile:
+            reader = csv.reader(csvfile)
+            header = next(reader)
+            indexes = {"ticker": header.index("Instrument")}
+            for entry in reader:
+                try:
+                    parsedTrades.append(entry[indexes["ticker"]])
+                except TypeError:
+                    # has some form of incomtabible type
+                    continue
+                except IndexError:
+                    # invalid entry, does not contain necessary data
+                    continue
+            return parsedTrades
+    except FileNotFoundError:
+        print("A file with this path could not be found")
