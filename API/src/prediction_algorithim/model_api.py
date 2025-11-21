@@ -11,7 +11,7 @@ test_path = "/Users/kylelong/Downloads/RH.csv"
 
 
 class TickerSet(BaseModel):
-    tickers: list[str] = Field(description="List of similar stock tickers based on submitted data")
+    tickers: list[str] = Field(description="list of stock tickers")
 
 
 def userAnalysis(path):
@@ -23,7 +23,7 @@ def userAnalysis(path):
         model="gemini-2.5-flash",
         contents=entryString,
         config=types.GenerateContentConfig(
-        system_instruction="You are to recommend stock tickers based specifically on the submitted users trading patterns", response_mime_type="application/json", 
+        system_instruction="You are to recommend new stock tickers based on the submitted users trading patterns", response_mime_type="application/json", 
         response_json_schema=TickerSet.model_json_schema()),
     )
     tickerSet = TickerSet.model_validate_json(response.text)
