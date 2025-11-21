@@ -11,7 +11,7 @@ test_path = "/Users/kylelong/Downloads/RH.csv"
 
 
 class TickerSet(BaseModel):
-    tickers: list[str] = Field(description="List of recommended stock tickers based on submitted data")
+    tickers: list[str] = Field(description="List of similar stock tickers based on submitted data")
 
 
 def userAnalysis(path):
@@ -26,7 +26,11 @@ def userAnalysis(path):
         system_instruction="You are to recommend stock tickers based specifically on the submitted users trading patterns", response_mime_type="application/json", 
         response_json_schema=TickerSet.model_json_schema()),
     )
+    tickerSet = TickerSet.model_validate_json(response.text)
+    return tickerSet
 
 
 if __name__ == "__main__":
-    print(userAnalysis(test_path))
+    callResponse = userAnalysis(test_path)
+    for result in callResponse:
+        print(result)
