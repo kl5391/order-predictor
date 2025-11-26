@@ -22,7 +22,8 @@ class InitialTickerSet(BaseModel):
     data: str = Field(description="relevant data for selected stock. don't be afraid to use actual numbers")"""
 
 class ReturnedDataSet(BaseModel):
-    stocks: list[str] = Field(description="List of validated stocks with reasons for why each one was picked and relevant data for each")
+    stocks: list[str] = Field(description="List of validated stock tickers. Must not be users previous stocks. Make sure they match")
+    stockReasoning: list[str] = Field(description="List of explanations of why each stock was selected. don't be afraid to make numerical comparisons. Make sure they match")
 
 
 def userAnalysis(path):
@@ -62,10 +63,14 @@ def tickerExamanation(suggestedTickers, userTickers):
     validatedTickerSet = ReturnedDataSet.model_validate_json(response.text)
     return validatedTickerSet
 
-
+def getTickerInfo(tickers, tickerReasoning):
+    for ticker in tickers:
+        print(ticker)
+    for tickerReason in tickerReasoning:
+        print(tickerReason)
+    
 if __name__ == "__main__":
     userPath = getEntryObjects(test_path)
     callResponse = userAnalysis(test_path)
     result = tickerExamanation(callResponse, getEntryTickers(test_path))
-    for stock in result.stocks:
-        print(stock)
+    getTickerInfo(result.stocks, result.stockReasoning)
