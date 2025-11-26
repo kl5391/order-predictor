@@ -17,41 +17,35 @@ class EntryObject:
         return f"Ticker: {self.Ticker} Order Type: {self.Type} Order Quantity: {self.Quantity} Order Price: {self.Price} Order Amount: {self.Amount}"
 
 
-def getEntryObjects(path=None):
+def getEntryObjects(data):
     parsedTrades = []
-    if path == None:
-        path = input("Input file path to parse\nPath: ")
-    try:
-        with open(path, newline="") as csvfile:
-            reader = csv.reader(csvfile)
-            header = next(reader)
-            indexes = {
-                "ticker": header.index("Instrument"),
-                "type": header.index("Trans Code"),
-                "quantity": header.index("Quantity"),
-                "price": header.index("Price"),
-                "amount": header.index("Amount"),
-            }
-            for entry in reader:
-                try:
-                    parsedTrades.append(
-                        EntryObject(
-                            entry[indexes["ticker"]],
-                            entry[indexes["type"]],
-                            entry[indexes["quantity"]],
-                            entry[indexes["price"]],
-                            entry[indexes["amount"]],
-                        )
-                    )
-                except TypeError:
-                    # has some form of incomtabible type
-                    continue
-                except IndexError:
-                    # invalid entry, does not contain necessary data
-                    continue
-            return parsedTrades
-    except FileNotFoundError:
-        print("A file with this path could not be found")
+    reader = csv.reader(data)
+    header = next(reader)
+    indexes = {
+        "ticker": header.index("Instrument"),
+        "type": header.index("Trans Code"),
+        "quantity": header.index("Quantity"),
+        "price": header.index("Price"),
+        "amount": header.index("Amount"),
+    }
+    for entry in reader:
+        try:
+            parsedTrades.append(
+                EntryObject(
+                    entry[indexes["ticker"]],
+                    entry[indexes["type"]],
+                    entry[indexes["quantity"]],
+                    entry[indexes["price"]],
+                    entry[indexes["amount"]],
+                ).Ticker
+            )
+        except TypeError:
+            # has some form of incomtabible type
+            continue
+        except IndexError:
+            # invalid entry, does not contain necessary data
+            continue
+    return parsedTrades
 
 
 def getEntryTickers(path=None):

@@ -4,6 +4,8 @@ from prediction_api import userAnalysis, tickerExamanation
 from parser import getEntryObjects
 from stock_data import getTickerData
 from werkzeug.datastructures import FileStorage
+from io import TextIOWrapper
+from csv import reader
 
 app = Flask(__name__)
 api = Api(app)
@@ -12,19 +14,21 @@ api = Api(app)
 class TickerData(Resource):
     def get(self, ticker):
         return {"data": getTickerData(ticker)}
-    
+
+
 class Upload(Resource):
     def get(self):
-        return({"data": "youre at the right endpoint"})
+        return {"data": "youre at the right endpoint"}
 
     def post(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('file', location='files', type=FileStorage, required=True)
+        parser.add_argument("file", location="files", type=FileStorage, required=True)
         args = parser.parse_args()
-        csv_file: FileStorage = args['file']
+        csv_file: FileStorage = args["file"]
         if csv_file.filename.endswith(".csv"):
-            return{"file_name": csv_file.filename}
-        
+            csv_stream = TextIOWrapper(csv_file.stream, encoding="utf-8")
+            data = getEntryObjects(csv_stream)
+            return {"data": data}
 
 
 api.add_resource(TickerData, "/info/<ticker>")
