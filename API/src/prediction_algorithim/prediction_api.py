@@ -31,8 +31,7 @@ class ReturnedDataSet(BaseModel):
     )
 
 
-def userAnalysis(path):
-    entryObjects = getEntryObjects(path)
+def userAnalysis(entryObjects):
     entryString = ""
     for entry in entryObjects:
         entryString += f"{entry}, "
