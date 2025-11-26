@@ -3,8 +3,9 @@ from google.genai import types
 from parser import getEntryObjects, getEntryTickers
 from pydantic import BaseModel, Field
 from stock_data import getTickerData
+from os import environ
 
-client = genai.Client()
+client = genai.Client(api_key=environ.get("PREDICTOR_KEY"))
 
 
 # For easy testing
@@ -53,7 +54,7 @@ def tickerExamanation(suggestedTickers, userTickers):
             suggestedData,
         ],
         config=types.GenerateContentConfig(
-            system_instruction=f"You need to determine if these stocks are comparable based on your initial prompt. Do not be afraid to disinclude tickers that do not match {initial_system_instruction}",
+            system_instruction=f"You need to determine if these stocks are comparable based on your initial prompt. Do not be afraid to disinclude tickers that do not match {initial_system_instruction}. Please make sure they are new stocks",
             response_mime_type="application/json",
             response_json_schema=ReturnedDataSet.model_json_schema(),
         ),
