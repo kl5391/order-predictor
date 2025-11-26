@@ -16,14 +16,13 @@ initial_system_instruction = "You are to recommend new stock tickers based on th
 class InitialTickerSet(BaseModel):
     tickers: list[str] = Field(description="list of stock tickers. minimum of 8")
 
-"""class ValidatedStock(BaseModel):
+class ValidatedStock(BaseModel):
     ticker: str = Field(description="name of ticker")
     reason: str = Field(description="brief reason for why stock is a good fit")
-    data: str = Field(description="relevant data for selected stock. don't be afraid to use actual numbers")"""
+    data: str = Field(description="relevant data for selected stock. don't be afraid to use actual numbers")
 
 class ReturnedDataSet(BaseModel):
-    stocks: list[str] = Field(description="List of validated stock tickers. Must not be users previous stocks. Make sure they match")
-    stockReasoning: list[str] = Field(description="List of explanations of why each stock was selected. don't be afraid to make numerical comparisons. Make sure they match")
+    stocks: list[ValidatedStock] = Field(description="List of validated stock tickers. Must not be users previous stocks. Make sure they match")
 
 
 def userAnalysis(path):
@@ -63,14 +62,12 @@ def tickerExamanation(suggestedTickers, userTickers):
     validatedTickerSet = ReturnedDataSet.model_validate_json(response.text)
     return validatedTickerSet
 
-def getTickerInfo(tickers, tickerReasoning):
+def getTickerInfo(tickers):
     for ticker in tickers:
         print(ticker)
-    for tickerReason in tickerReasoning:
-        print(tickerReason)
     
 if __name__ == "__main__":
     userPath = getEntryObjects(test_path)
     callResponse = userAnalysis(test_path)
     result = tickerExamanation(callResponse, getEntryTickers(test_path))
-    getTickerInfo(result.stocks, result.stockReasoning)
+    getTickerInfo(result.stocks)
