@@ -5,7 +5,7 @@ from parser import getEntryObjects
 from stock_data import getTickerData
 from werkzeug.datastructures import FileStorage
 from io import TextIOWrapper
-from csv import reader
+from json import dumps
 
 app = Flask(__name__)
 api = Api(app)

@@ -1,4 +1,5 @@
 import csv
+import json
 
 
 class EntryObject:
@@ -12,6 +13,15 @@ class EntryObject:
             raise TypeError(
                 f"Incompatible data. Entry will not impact model {self.Ticker}"
             )
+
+    def __dict__(self):
+        return {
+            "ticker": self.Ticker,
+            "type": self.Type,
+            "quantity": self.Quantity,
+            "price": self.Price,
+            "amount": self.Amount,
+        }
 
     def __str__(self):
         return f"Ticker: {self.Ticker} Order Type: {self.Type} Order Quantity: {self.Quantity} Order Price: {self.Price} Order Amount: {self.Amount}"
@@ -37,7 +47,7 @@ def getEntryObjects(data):
                     entry[indexes["quantity"]],
                     entry[indexes["price"]],
                     entry[indexes["amount"]],
-                ).Ticker
+                ).__dict__()
             )
         except TypeError:
             # has some form of incomtabible type
