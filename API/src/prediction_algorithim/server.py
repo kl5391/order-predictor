@@ -2,7 +2,8 @@ from flask import Flask
 from flask_restful import Resource, Api, reqparse
 from stock_data import getTickerData
 from upload import Upload
-from prediction_api import userAnalysis, tickerExamanation
+from prediction_api import userAnalysis, tickerExamanation, InitialTickerSet
+from json import dumps
 
 app = Flask(__name__)
 api = Api(app)
@@ -15,14 +16,10 @@ class TickerData(Resource):
 class GenerateTickers(Resource):
     def post(self):
         parser = reqparse.RequestParser()
-        parser.add_argument("tickers", type=list, required=True)
+        parser.add_argument("tickers", type=dict, action='append', required=True)
         data = parser.parse_args()
-        return {"data": data["tickers"]}
-        """
-        userTickers = data["tickers"]
-        suggestedTickers = userAnalysis(userTickers)
-        return {"generatedTickerObjects": tickerExamanation(suggestedTickers, userTickers)}"""
-        
+        print(data["tickers"])
+        return {"generatedTickers": dumps("hey")}
 
 
 api.add_resource(TickerData, "/info/<ticker>")

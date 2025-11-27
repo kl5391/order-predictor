@@ -31,6 +31,7 @@ class ReturnedDataSet(BaseModel):
     )
 
 
+
 def userAnalysis(entryObjects):
     entryString = ""
     for entry in entryObjects:
@@ -45,7 +46,7 @@ def userAnalysis(entryObjects):
         ),
     )
     tickerSet = InitialTickerSet.model_validate_json(response.text)
-    return tickerSet.tickers
+    return tickerSet
 
 
 def tickerExamanation(suggestedTickers, userTickers):
