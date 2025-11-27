@@ -18,7 +18,11 @@ class GenerateTickers(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument("tickers", type=dict, action='append', required=True)
         data = parser.parse_args()
-        print(data["tickers"])
+        analyzedStocks = userAnalysis(data["tickers"])
+        tickerList = []
+        for stock in data["tickers"]:
+            tickerList.append(stock['ticker'])
+        validatedStocks = tickerExamanation(analyzedStocks, tickerList)
         return {"generatedTickers": dumps("hey")}
 
 
