@@ -31,7 +31,6 @@ class ReturnedDataSet(BaseModel):
     )
 
 
-
 def userAnalysis(entryObjects):
     entryString = ""
     for entry in entryObjects:

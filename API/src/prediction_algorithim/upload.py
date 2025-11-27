@@ -3,6 +3,7 @@ from io import TextIOWrapper
 from flask_restful import Resource, reqparse
 from parser import getEntryObjects
 
+
 class Upload(Resource):
     def post(self):
         parser = reqparse.RequestParser()

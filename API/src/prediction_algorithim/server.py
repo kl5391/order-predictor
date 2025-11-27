@@ -12,16 +12,17 @@ api = Api(app)
 class TickerData(Resource):
     def get(self, ticker):
         return {"data": getTickerData(ticker)}
-    
+
+
 class GenerateTickers(Resource):
     def post(self):
         parser = reqparse.RequestParser()
-        parser.add_argument("tickers", type=dict, action='append', required=True)
+        parser.add_argument("tickers", type=dict, action="append", required=True)
         data = parser.parse_args()
         analyzedStocks = userAnalysis(data["tickers"])
         tickerList = []
         for stock in data["tickers"]:
-            tickerList.append(stock['ticker'])
+            tickerList.append(stock["ticker"])
         validatedStocks = tickerExamanation(analyzedStocks, tickerList)
         returnedStocks = []
         for stock in validatedStocks.stocks:
