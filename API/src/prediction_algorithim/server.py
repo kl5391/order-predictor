@@ -23,7 +23,10 @@ class GenerateTickers(Resource):
         for stock in data["tickers"]:
             tickerList.append(stock['ticker'])
         validatedStocks = tickerExamanation(analyzedStocks, tickerList)
-        return {"generatedTickers": dumps("hey")}
+        returnedStocks = []
+        for stock in validatedStocks.stocks:
+            returnedStocks.append(stock.model_dump())
+        return {"generatedTickers": returnedStocks}
 
 
 api.add_resource(TickerData, "/info/<ticker>")
