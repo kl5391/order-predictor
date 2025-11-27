@@ -3,7 +3,6 @@ from flask_restful import Resource, Api, reqparse
 from stock_data import getTickerData
 from upload import Upload
 from prediction_api import userAnalysis, tickerExamanation
-from json import dumps
 
 app = Flask(__name__)
 api = Api(app)
