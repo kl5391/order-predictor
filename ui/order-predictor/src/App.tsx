@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Children, Component, useState } from "react";
+import "./App.css";
+import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
+import { Stepper } from "primereact/stepper";
+import { StepperPanel } from "primereact/stepperpanel";
+import { Steps } from "primereact/steps";
+import { Card } from "primereact/card";
+import { FileUpload } from "primereact/fileupload";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <PrimeReactProvider>
+      <h1 style={{ margin: 0 }}>Welcome</h1>
+      <h5 style={{ fontWeight: "lighter" }}>
+        To continue, please complete the following form
+      </h5>
+      <Stepper headerPosition="bottom" orientation="vertical">
+        <StepperPanel header=" Upload a file">
+          <Card>
+            <FileUpload />
+          </Card>
+        </StepperPanel>
+        <StepperPanel>
+          <h1>hey again</h1>
+        </StepperPanel>
+      </Stepper>
+    </PrimeReactProvider>
+  );
 }
 
-export default App
+export default App;
