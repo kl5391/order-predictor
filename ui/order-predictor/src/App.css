@@ -36,6 +36,9 @@ h3 {
 
 .stepper-accordion {
   padding: 1.5em;
-
   background-color: rgba(67, 67, 67, 0.041);
+}
+
+.p-fileupload-buttonbar button {
+  margin: 0.2em;
 }
