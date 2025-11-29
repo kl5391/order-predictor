@@ -2,7 +2,6 @@ import "./App.css";
 import { PrimeReactProvider } from "primereact/api";
 import { Stepper } from "primereact/stepper";
 import { StepperPanel } from "primereact/stepperpanel";
-import { Card } from "primereact/card";
 import { FileUpload } from "primereact/fileupload";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { Button } from "primereact/button";
@@ -20,35 +19,66 @@ function App() {
           <Stepper headerPosition="bottom" orientation="vertical">
             <StepperPanel header=". Get your CSV">
               <div style={{ margin: ".5em" }}>
-                <Accordion
-                  multiple
-                  activeIndex={[0, 1]}
-                  className="stepper-accordion"
-                >
+                <Accordion activeIndex={[0, 1]} className="stepper-accordion">
                   <AccordionTab
-                    header="&nbsp;Go to Robinhood"
+                    header="&nbsp;Step 1: Go to Robinhood"
                     style={{ textAlign: "left", marginBottom: ".25em" }}
                   >
                     <Button
-                      icon="pi pi-check"
                       label="Open robinhood.com"
                       onClick={() => window.open("https://robinhood.com/")}
                       className="m-0"
                     ></Button>
                   </AccordionTab>
                   <AccordionTab
-                    header="&nbsp;Click on Reports and Statements"
+                    header="&nbsp;Step 2: Click on Reports and Statements"
                     style={{ textAlign: "left", marginBottom: ".25em" }}
                   >
-                    <Image src="./outlined-menu.png" width="500" preview />
+                    <Image src="./outlined-menu.png" width="500" />
+                  </AccordionTab>
+                  <AccordionTab
+                    header="&nbsp;Step 3: Select desired options. Then press Generate Report"
+                    style={{ textAlign: "left", marginBottom: ".25em" }}
+                  >
+                    <div>
+                      <Image src="./highlighted-generate.png" width="500" />
+                    </div>
+                    <p
+                      style={{
+                        width: 500,
+                        textAlign: "center",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      After doing this, it may take some time for your report to
+                      be generated. You will recieve notification via email and
+                      push notification on phone once your report is ready for
+                      you.
+                    </p>
+                  </AccordionTab>
+                  <AccordionTab
+                    header="&nbsp;Step 4: Once ready, click on the Download CSV button"
+                    style={{ textAlign: "left", marginBottom: ".25em" }}
+                  >
+                    <Image src="./download-highlighted.png" width="500" />
+                    <p
+                      style={{
+                        width: 500,
+                        textAlign: "center",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      After doing this, you can proceed to the next step in this
+                      process: Uploading your newly generated CSV File.
+                    </p>
                   </AccordionTab>
                 </Accordion>
               </div>
             </StepperPanel>
             <StepperPanel header=". Upload your CSV">
-              <Card>
+              <div className="file-upload-div">
                 <FileUpload style={{ margin: "1em" }} />
-              </Card>
+              </div>
             </StepperPanel>
           </Stepper>
         </div>

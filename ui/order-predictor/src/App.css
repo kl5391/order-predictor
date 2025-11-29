@@ -42,3 +42,7 @@ h3 {
 .p-fileupload-buttonbar button {
   margin: 0.2em;
 }
+
+.file-upload-div {
+  background-color: rgba(67, 67, 67, 0.041);
+}
