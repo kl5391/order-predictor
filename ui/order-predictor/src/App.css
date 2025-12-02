@@ -8,7 +8,7 @@
 .welcome-block h1,
 h3 {
   margin: 0;
-  color: rgb(37, 37, 37);
+  color: rgba(0, 0, 0, 0.405);
 }
 
 .welcome-block h3 {
@@ -18,8 +18,8 @@ h3 {
 .base-container {
   background: radial-gradient(
     circle,
-    rgb(138, 137, 137) 0%,
-    rgba(240, 240, 240, 1) 100%
+    rgb(93, 133, 255) 0%,
+    rgb(255, 255, 255) 100%
   );
   padding: 5em;
   border-radius: 1em;
@@ -30,7 +30,7 @@ h3 {
 .stepper-panel {
   padding: 1em;
   border-radius: 1em;
-  opacity: 80%;
+  opacity: 70%;
   background-color: rgb(232, 230, 230);
 }
 

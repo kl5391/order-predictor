@@ -19,7 +19,7 @@ function App() {
           <Stepper headerPosition="bottom" orientation="vertical">
             <StepperPanel header=". Get your CSV">
               <div style={{ margin: ".5em" }}>
-                <Accordion activeIndex={[0, 1]} className="stepper-accordion">
+                <Accordion activeIndex={[1]} className="stepper-accordion">
                   <AccordionTab
                     header="&nbsp;Step 1: Go to Robinhood"
                     style={{ textAlign: "left", marginBottom: ".25em" }}
