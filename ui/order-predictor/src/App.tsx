@@ -77,7 +77,11 @@ function App() {
             </StepperPanel>
             <StepperPanel header=". Upload your CSV">
               <div className="file-upload-div">
-                <FileUpload style={{ margin: "1em" }} />
+                <FileUpload
+                  style={{ margin: "1em" }}
+                  accept=".csv"
+                  url={"http://localhost:5000/upload"}
+                />
               </div>
             </StepperPanel>
           </Stepper>
