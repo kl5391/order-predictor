@@ -10,6 +10,7 @@ import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 
 function App() {
+  const [stepperIndex, setStepperIndex] = useState(0);
   const [uploadedTickers, setUploadedTickers] = useState([]);
   const [generatedTickers, setGeneratedTickers] = useState([]);
   const handleUpload = async (event) => {
@@ -26,6 +27,7 @@ function App() {
         const result = await response.json();
         const stockArray = result["data"];
         setUploadedTickers(stockArray);
+        setStepperIndex(2);
       } else {
         console.error("File upload failed:", response.statusText);
       }
@@ -43,7 +45,11 @@ function App() {
             <h3>To continue, please complete the following steps:</h3>
           </div>
           <div className="stepper-panel">
-            <Stepper headerPosition="bottom" orientation="vertical">
+            <Stepper
+              headerPosition="bottom"
+              orientation="vertical"
+              activeStep={stepperIndex}
+            >
               <StepperPanel header=". Get your CSV">
                 <Instructions />
               </StepperPanel>
