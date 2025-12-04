@@ -81,6 +81,7 @@ function App() {
                   style={{ margin: "1em" }}
                   accept=".csv"
                   url={"http://localhost:5000/upload"}
+                  name="file"
                 />
               </div>
             </StepperPanel>
