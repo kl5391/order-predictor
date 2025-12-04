@@ -5,6 +5,8 @@ import { StepperPanel } from "primereact/stepperpanel";
 import { FileUpload } from "primereact/fileupload";
 import { useState } from "react";
 import Instructions from "./Instructions";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
 
 function App() {
   const [uploadedTickers, setUploadedTickers] = useState([]);
@@ -20,7 +22,8 @@ function App() {
 
       if (response.ok) {
         const result = await response.json();
-        setUploadedTickers(result);
+        const stockArray = result["data"];
+        setUploadedTickers(stockArray);
       } else {
         console.error("File upload failed:", response.statusText);
       }
@@ -51,6 +54,18 @@ function App() {
                   customUpload
                   uploadHandler={(event) => handleUpload(event)}
                 />
+              </div>
+            </StepperPanel>
+
+            <StepperPanel header=". Your parsed data">
+              <div className="uploaded-ticker-box">
+                <DataTable value={uploadedTickers}>
+                  <Column field="ticker" header="Ticker"></Column>
+                  <Column field="type" header="Order Type"></Column>
+                  <Column field="quantity" header="Quantity"></Column>
+                  <Column field="price" header="Price"></Column>
+                  <Column field="amount" header="Amount"></Column>
+                </DataTable>
               </div>
             </StepperPanel>
           </Stepper>
