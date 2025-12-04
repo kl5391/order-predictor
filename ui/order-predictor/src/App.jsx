@@ -12,7 +12,7 @@ import { Button } from "primereact/button";
 function App() {
   const [stepperIndex, setStepperIndex] = useState(0);
   const [uploadedTickers, setUploadedTickers] = useState([]);
-  const [generatedTickers, setGeneratedTickers] = useState([]);
+  const [isGenerating, setIsGenerating] = useState(false);
   const handleUpload = async (event) => {
     const files = event.files;
     const formData = new FormData();
@@ -38,7 +38,7 @@ function App() {
 
   return (
     <PrimeReactProvider>
-      {!(generatedTickers.length > 0) && (
+      {isGenerating == false && (
         <div className="base-container">
           <div className="welcome-block">
             <h1>Welcome!</h1>
