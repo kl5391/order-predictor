@@ -60,6 +60,7 @@ function App() {
                     accept=".csv"
                     url={"http://localhost:5000/upload"}
                     name="file"
+                    disabled={uploadedTickers.length > 0}
                     customUpload
                     uploadHandler={(event) => handleUpload(event)}
                   />
