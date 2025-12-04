@@ -7,9 +7,11 @@ import { useState } from "react";
 import Instructions from "./Instructions";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { Button } from "primereact/button";
 
 function App() {
   const [uploadedTickers, setUploadedTickers] = useState([]);
+  const [generatedTickers, setGeneratedTickers] = useState([]);
   const handleUpload = async (event) => {
     const files = event.files;
     const formData = new FormData();
@@ -57,7 +59,7 @@ function App() {
               </div>
             </StepperPanel>
 
-            <StepperPanel header=". Your parsed data">
+            <StepperPanel header=". Confirm your parsed data">
               <div className="uploaded-ticker-box">
                 <DataTable value={uploadedTickers}>
                   <Column field="ticker" header="Ticker"></Column>
@@ -67,6 +69,7 @@ function App() {
                   <Column field="amount" header="Amount"></Column>
                 </DataTable>
               </div>
+              <Button severity="success" label="Confirm Selections" raised />
             </StepperPanel>
           </Stepper>
         </div>
