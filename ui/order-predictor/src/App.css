@@ -8,7 +8,7 @@
 .welcome-block h1,
 h3 {
   margin: 0;
-  color: rgba(0, 0, 0, 0.405);
+  color: rgba(35, 35, 35, 0.888);
 }
 
 .welcome-block h3 {
@@ -25,6 +25,8 @@ h3 {
   border-radius: 1em;
   opacity: 90%;
   border-style: double;
+  width: 50vw;
+  height: min-content;
 }
 
 .stepper-panel {
@@ -45,4 +47,7 @@ h3 {
 
 .file-upload-div {
   background-color: rgba(67, 67, 67, 0.041);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }

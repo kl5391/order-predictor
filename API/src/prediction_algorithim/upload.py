@@ -7,8 +7,9 @@ from parser import getEntryObjects
 class Upload(Resource):
     def post(self):
         parser = reqparse.RequestParser()
-        parser.add_argument("file", location="files", type=FileStorage, required=True)
+        parser.add_argument("file", location="files", type=FileStorage)
         args = parser.parse_args()
+        print(args)
         csv_file: FileStorage = args["file"]
         if csv_file.filename.endswith(".csv"):
             csv_stream = TextIOWrapper(csv_file.stream, encoding="utf-8")

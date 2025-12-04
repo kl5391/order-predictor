@@ -2,10 +2,31 @@ import "./App.css";
 import { PrimeReactProvider } from "primereact/api";
 import { Stepper } from "primereact/stepper";
 import { StepperPanel } from "primereact/stepperpanel";
-import { FileUpload } from "primereact/fileupload";
+import { FileUpload, type FileUploadHandlerEvent } from "primereact/fileupload";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { Button } from "primereact/button";
 import { Image } from "primereact/image";
+
+const handleUpload = async (event: FileUploadHandlerEvent) => {
+  const files = event.files;
+  const formData = new FormData();
+  formData.append("file", files[0]);
+  try {
+    const response = await fetch("http://127.0.0.1:5000/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      console.log("File uploaded successfully:", result);
+    } else {
+      console.error("File upload failed:", response.statusText);
+    }
+  } catch (error) {
+    console.error("Error during file upload:", error);
+  }
+};
 
 function App() {
   return (
@@ -82,6 +103,8 @@ function App() {
                   accept=".csv"
                   url={"http://localhost:5000/upload"}
                   name="file"
+                  customUpload
+                  uploadHandler={(event) => handleUpload(event)}
                 />
               </div>
             </StepperPanel>
