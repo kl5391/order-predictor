@@ -2,7 +2,7 @@
 
 ## What is this
 
-**order-predictor** is a web application combining a Python/Flask backend and a React frontend that uses a GEMINI-based API to help determine viable “stocks” based on a user’s prior data.
+**order-predictor** is a web application combining a Python/Flask backend and a React frontend that uses the Google Gemini API to help determine viable “stocks” based on a user’s prior data.
 
 ## Features
 
