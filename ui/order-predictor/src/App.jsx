@@ -16,8 +16,26 @@ function App() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [analyzedTickers, setAnalyzedTickers] = useState([]);
 
-  const confirmClicked = () => {
+  const confirmClicked = async () => {
     setIsGenerating(true);
+    const formData = new FormData();
+    formData.append("tickers", analyzedTickers);
+    try {
+      const response = await fetch("http://127.0.0.1:5000/analyze", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        const stocksArray = result["generatedTickers"];
+        setAnalyzedTickers(stocksArray);
+      } else {
+        console.error("Could not process user data", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error during ticker analysis:", error);
+    }
   };
 
   const handleUpload = async (event) => {
