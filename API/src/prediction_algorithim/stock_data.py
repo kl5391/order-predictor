@@ -1,8 +1,12 @@
 import yfinance as yf
 
-
+"""
+This function gets data about a particular ticker within the last month using the yfinance library.
+May be subject to change depending on what data I specifically decide to use when users request more info. 
+Currently unused.
+"""
 def getTickerData(tickers):
-    if isinstance(tickers, list):
+    if isinstance(tickers, list): 
         ticker_array = []
         for ticker in tickers:
             data = yf.Ticker(ticker)
