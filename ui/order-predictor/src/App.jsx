@@ -8,11 +8,18 @@ import Instructions from "./Instructions";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
+import { ProgressSpinner } from "primereact/progressspinner";
 
 function App() {
   const [stepperIndex, setStepperIndex] = useState(0);
   const [uploadedTickers, setUploadedTickers] = useState([]);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [analyzedTickers, setAnalyzedTickers] = useState([]);
+
+  const confirmClicked = () => {
+    setIsGenerating(true);
+  };
+
   const handleUpload = async (event) => {
     const files = event.files;
     const formData = new FormData();
@@ -81,7 +88,7 @@ function App() {
                   <Button
                     severity="success"
                     label="Confirm Selections"
-                    raised
+                    onClick={confirmClicked}
                   />
                 )}
               </StepperPanel>
@@ -89,11 +96,12 @@ function App() {
           </div>
         </div>
       )}
-      {
-        <div>
-          <h1>hey</h1>
+      {analyzedTickers.length == 0 && isGenerating == true && (
+        <div className="loading-page">
+          <h1>Analyzing Your Data...</h1>
+          <ProgressSpinner />
         </div>
-      }
+      )}
     </PrimeReactProvider>
   );
 }

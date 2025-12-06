@@ -36,6 +36,13 @@ h3 {
   height: min-content;
 }
 
+.loading-page {
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  align-items: center;
+}
+
 .stepper-panel {
   padding: 1em;
   border-radius: 1em;
