@@ -48,7 +48,7 @@ function App() {
       {isGenerating == false && (
         <div className="base-container">
           <div className="welcome-block">
-            <h1>Welcome!</h1>
+            <h1 style={{ fontWeight: "bold" }}>Welcome!</h1>
             <h3>To continue, please complete the following steps:</h3>
           </div>
           <div className="stepper-panel">
