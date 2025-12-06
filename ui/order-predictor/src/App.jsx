@@ -64,7 +64,7 @@ function App() {
 
   return (
     <PrimeReactProvider>
-      {isGenerating == false && (
+      {isGenerating == false && analyzedTickers.length <= 0 && (
         <div className="base-container">
           <div className="welcome-block">
             <h1 style={{ fontWeight: "bold" }}>Welcome!</h1>
