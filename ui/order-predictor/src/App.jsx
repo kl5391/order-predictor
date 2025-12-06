@@ -35,6 +35,8 @@ function App() {
       }
     } catch (error) {
       console.error("Error during ticker analysis:", error);
+    } finally {
+      setIsGenerating(false);
     }
   };
 
