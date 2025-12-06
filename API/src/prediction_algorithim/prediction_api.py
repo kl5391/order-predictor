@@ -10,7 +10,7 @@ client = genai.Client(api_key=environ.get("PREDICTOR_KEY"))
 
 # For easy testing
 test_path = "/Users/kylelong/Downloads/RH.csv"
-initial_system_instruction = "You are to recommend new stock tickers based on the submitted users trading patterns"
+initial_system_instruction = "You are to recommend new stock tickers based on the submitted users trading patterns. Minimum of 4"
 
 
 class InitialTickerSet(BaseModel):
