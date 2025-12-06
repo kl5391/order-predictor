@@ -9,6 +9,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 import { ProgressSpinner } from "primereact/progressspinner";
+import GeneratedPage from "./GeneratedPage";
 
 function App() {
   const [stepperIndex, setStepperIndex] = useState(0);
@@ -120,6 +121,9 @@ function App() {
           <h1>Analyzing Your Data...</h1>
           <ProgressSpinner />
         </div>
+      )}
+      {0 < analyzedTickers.length && (
+        <GeneratedPage analyzedTickers={analyzedTickers} />
       )}
     </PrimeReactProvider>
   );
