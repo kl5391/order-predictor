@@ -18,15 +18,11 @@ function App() {
 
   const confirmClicked = async () => {
     setIsGenerating(true);
-    const dictionariedTickers = uploadedTickers.reduce((accumulator, stock) => {
-      accumulator[stock.ticker] = stock;
-      return accumulator;
-    }, {});
     try {
       const response = await fetch("http://127.0.0.1:5000/analyze", {
         method: "POST",
         headers: { "Content-Type": "Application/json" },
-        body: JSON.stringify({ tickers: dictionariedTickers }),
+        body: JSON.stringify({ tickers: uploadedTickers }),
       });
 
       if (response.ok) {
