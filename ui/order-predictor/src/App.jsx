@@ -96,7 +96,7 @@ function App() {
           </div>
         </div>
       )}
-      {analyzedTickers.length == 0 && isGenerating == true && (
+      {analyzedTickers.length <= 0 && isGenerating == true && (
         <div className="loading-page">
           <h1>Analyzing Your Data...</h1>
           <ProgressSpinner />
