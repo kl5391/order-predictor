@@ -18,12 +18,15 @@ function App() {
 
   const confirmClicked = async () => {
     setIsGenerating(true);
-    const formData = new FormData();
-    formData.append("tickers", analyzedTickers);
+    const dictionariedTickers = uploadedTickers.reduce((accumulator, stock) => {
+      accumulator[stock.ticker] = stock;
+      return accumulator;
+    }, {});
+    console.log(dictionariedTickers);
     try {
       const response = await fetch("http://127.0.0.1:5000/analyze", {
         method: "POST",
-        body: formData,
+        body: dictionariedTickers,
       });
 
       if (response.ok) {
