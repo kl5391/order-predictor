@@ -9,6 +9,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 import { ProgressSpinner } from "primereact/progressspinner";
+import "primeicons/primeicons.css";
 import GeneratedPage from "./GeneratedPage";
 
 function App() {

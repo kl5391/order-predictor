@@ -44,10 +44,26 @@ h3 {
   align-items: center;
   font-weight: bolder;
 }
+
+.analyzed-stock h1 {
+  font-weight: bolder;
+}
+
 .analyzed-stock {
   display: flex;
   flex-flow: column wrap;
+  justify-content: center;
   gap: 1em;
+  background-color: gray;
+  padding: 0.5em;
+  margin: 0.5em;
+  border-radius: 1em;
+  color: rgb(0, 0, 0);
+  background: radial-gradient(
+    circle,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(252, 70, 107, 1) 100%
+  );
 }
 
 .stepper-panel {
