@@ -26,5 +26,9 @@ export default function InfoCard({ ticker }) {
     setData();
   }, [ticker]);
 
-  return <h1>{tickerInfo["displayName"]}</h1>;
+  return (
+    <div>
+      <h1>{tickerInfo["displayName"]}</h1>
+    </div>
+  );
 }
