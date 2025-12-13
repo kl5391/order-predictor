@@ -11,8 +11,12 @@ import { Button } from "primereact/button";
 import { ProgressSpinner } from "primereact/progressspinner";
 import "primeicons/primeicons.css";
 import GeneratedPage from "./GeneratedPage";
+import { OverlayPanel } from "primereact/overlaypanel";
+import { useRef } from "react";
+import InfoCard from "./InfoCard";
 
 function App() {
+  const op = useRef(0);
   const [stepperIndex, setStepperIndex] = useState(0);
   const [uploadedTickers, setUploadedTickers] = useState([]);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -66,6 +70,10 @@ function App() {
 
   return (
     <PrimeReactProvider>
+      <OverlayPanel ref={op}>
+        <InfoCard ticker={"tsla"} />
+      </OverlayPanel>
+      <Button label="Get More Info" onClick={(e) => op.current.toggle(e)} />
       {isGenerating == false && analyzedTickers.length <= 0 && (
         <div className="base-container">
           <div className="welcome-block">

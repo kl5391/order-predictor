@@ -1,5 +1,7 @@
 import { Button } from "primereact/button";
 import { Carousel } from "primereact/carousel";
+import { OverlayPanel } from "primereact/overlaypanel";
+import InfoCard from "./InfoCard";
 
 function GeneratedPage({ analyzedTickers }) {
   const stockTemplate = (stock) => {
@@ -14,7 +16,6 @@ function GeneratedPage({ analyzedTickers }) {
           <b>What the data says</b>
           <p>{stock.data}</p>
         </div>
-        <Button label="Get More Info" />
       </div>
     );
   };
