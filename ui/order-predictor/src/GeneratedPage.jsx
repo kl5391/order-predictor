@@ -31,9 +31,7 @@ function GeneratedPage({ analyzedTickers }) {
 
   return (
     <div className="generated-page">
-      <h1 style={{ color: "white" }}>
-        Your Generated Stocks({analyzedTickers.length}):
-      </h1>
+      <h1>Your Generated Stocks({analyzedTickers.length}):</h1>
       <Carousel
         showIndicators={false}
         value={analyzedTickers}
