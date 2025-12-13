@@ -27,8 +27,18 @@ export default function InfoCard({ ticker }) {
   }, [ticker]);
 
   return (
-    <div>
-      <h1>{tickerInfo["displayName"]}</h1>
+    <div className="info-card">
+      {Object.keys(tickerInfo).length > 0 && (
+        <div>
+          <h1>{tickerInfo["displayName"]}</h1>
+          <h2>{tickerInfo["industry"]}</h2>
+          <a href={tickerInfo["website"]}>{tickerInfo["website"]}</a>
+          <h3>
+            Bid:{tickerInfo["bid"].toFixed(2)}/Ask:
+            {tickerInfo["ask"].toFixed(2)}
+          </h3>
+        </div>
+      )}
     </div>
   );
 }

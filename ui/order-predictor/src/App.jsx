@@ -68,66 +68,64 @@ function App() {
 
   return (
     <PrimeReactProvider>
-      {isGenerating == false && analyzedTickers.length <= 0 && (
-        <div className="base-container">
-          <div className="welcome-block">
-            <h1 style={{ fontWeight: "bold" }}>Welcome!</h1>
-            <h3>To continue, please complete the following steps:</h3>
-          </div>
-          <div className="stepper-panel">
-            <Stepper
-              headerPosition="bottom"
-              orientation="vertical"
-              activeStep={stepperIndex}
-            >
-              <StepperPanel header=". Get your CSV">
-                <Instructions />
-              </StepperPanel>
-              <StepperPanel header=". Upload your CSV">
-                <div className="file-upload-div">
-                  <FileUpload
-                    style={{ margin: "1em" }}
-                    accept=".csv"
-                    url={"http://localhost:5000/upload"}
-                    name="file"
-                    disabled={uploadedTickers.length > 0}
-                    customUpload
-                    uploadHandler={(event) => handleUpload(event)}
-                  />
-                </div>
-              </StepperPanel>
+      <div className="app">
+        {isGenerating == false && analyzedTickers.length <= 0 && (
+          <div className="base-container">
+            <div className="stepper-panel">
+              <Stepper
+                headerPosition="bottom"
+                orientation="vertical"
+                activeStep={stepperIndex}
+              >
+                <StepperPanel header=". Get your CSV">
+                  <Instructions />
+                </StepperPanel>
+                <StepperPanel header=". Upload your CSV">
+                  <div className="file-upload-div">
+                    <FileUpload
+                      style={{ margin: "1em" }}
+                      accept=".csv"
+                      url={"http://localhost:5000/upload"}
+                      name="file"
+                      disabled={uploadedTickers.length > 0}
+                      customUpload
+                      uploadHandler={(event) => handleUpload(event)}
+                    />
+                  </div>
+                </StepperPanel>
 
-              <StepperPanel header=". Confirm your parsed data">
-                <div className="uploaded-ticker-box">
-                  <DataTable value={uploadedTickers}>
-                    <Column field="ticker" header="Ticker"></Column>
-                    <Column field="type" header="Order Type"></Column>
-                    <Column field="quantity" header="Quantity"></Column>
-                    <Column field="price" header="Price"></Column>
-                    <Column field="amount" header="Amount"></Column>
-                  </DataTable>
-                </div>
-                {uploadedTickers.length > 0 && (
-                  <Button
-                    severity="success"
-                    label="Confirm Selections"
-                    onClick={confirmClicked}
-                  />
-                )}
-              </StepperPanel>
-            </Stepper>
+                <StepperPanel header=". Confirm your parsed data">
+                  <div className="uploaded-ticker-box">
+                    <DataTable value={uploadedTickers}>
+                      <Column field="ticker" header="Ticker"></Column>
+                      <Column field="type" header="Order Type"></Column>
+                      <Column field="quantity" header="Quantity"></Column>
+                      <Column field="price" header="Price"></Column>
+                      <Column field="amount" header="Amount"></Column>
+                    </DataTable>
+                  </div>
+                  {uploadedTickers.length > 0 && (
+                    <Button
+                      severity="success"
+                      label="Confirm Selections"
+                      onClick={confirmClicked}
+                    />
+                  )}
+                </StepperPanel>
+              </Stepper>
+            </div>
           </div>
-        </div>
-      )}
-      {analyzedTickers.length <= 0 && isGenerating == true && (
-        <div className="loading-page">
-          <h1>Analyzing Your Data...</h1>
-          <ProgressSpinner />
-        </div>
-      )}
-      {0 < analyzedTickers.length && (
-        <GeneratedPage analyzedTickers={analyzedTickers} />
-      )}
+        )}
+        {analyzedTickers.length <= 0 && isGenerating == true && (
+          <div className="loading-page">
+            <h1>Analyzing Your Data...</h1>
+            <ProgressSpinner />
+          </div>
+        )}
+        {0 < analyzedTickers.length && (
+          <GeneratedPage analyzedTickers={analyzedTickers} />
+        )}
+      </div>
     </PrimeReactProvider>
   );
 }

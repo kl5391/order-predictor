@@ -1,8 +1,13 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: auto;
   text-align: center;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
 }
 
 .welcome-block h1,
@@ -33,6 +38,7 @@ h3 {
   border-radius: 1em;
   opacity: 90%;
   border-style: double;
+  height: 1vh;
   width: 50vw;
   height: min-content;
 }
@@ -62,7 +68,7 @@ h3 {
   background: linear-gradient(
     90deg,
     rgba(191, 191, 191, 1) 0%,
-    rgba(59, 59, 59, 0.503) 53%,
+    rgba(130, 130, 130, 0.503) 53%,
     rgb(151, 151, 151) 100%
   );
   border-width: 0.1em;
@@ -89,4 +95,21 @@ h3 {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+}
+
+.info-card h1,
+h2,
+h3 {
+  margin: 0.25em;
+}
+
+.info-card {
+  background-color: gray;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 30vw;
+  padding: 1em;
+  text-align: center;
+  border-radius: 1em;
 }
