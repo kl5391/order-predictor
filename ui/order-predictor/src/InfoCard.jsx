@@ -1,4 +1,6 @@
 import { OverlayPanel } from "primereact/overlaypanel";
+import { ProgressSpinner } from "primereact/progressspinner";
+import { Skeleton } from "primereact/skeleton";
 import { useEffect, useState } from "react";
 
 export default function InfoCard({ ticker }) {
@@ -28,7 +30,7 @@ export default function InfoCard({ ticker }) {
 
   return (
     <div className="info-card">
-      {Object.keys(tickerInfo).length > 0 && (
+      {(Object.keys(tickerInfo).length > 0 && (
         <div>
           <h1>{tickerInfo["displayName"]}</h1>
           <h2>{tickerInfo["industry"]}</h2>
@@ -38,7 +40,7 @@ export default function InfoCard({ ticker }) {
             {tickerInfo["ask"].toFixed(2)}
           </h3>
         </div>
-      )}
+      )) || <ProgressSpinner />}
     </div>
   );
 }
