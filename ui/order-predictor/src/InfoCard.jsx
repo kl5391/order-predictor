@@ -36,8 +36,12 @@ export default function InfoCard({ ticker }) {
           <h2>{tickerInfo["industry"]}</h2>
           <a href={tickerInfo["website"]}>{tickerInfo["website"]}</a>
           <h3>
-            Bid:{tickerInfo["bid"].toFixed(2)}/Ask:
-            {tickerInfo["ask"].toFixed(2)}
+            {tickerInfo["bid"] && tickerInfo["ask"] && (
+              <div>
+                Bid:{tickerInfo["bid"].toFixed(2)}/Ask:
+                {tickerInfo["ask"].toFixed(2)}
+              </div>
+            )}
           </h3>
         </div>
       )) || <ProgressSpinner />}
