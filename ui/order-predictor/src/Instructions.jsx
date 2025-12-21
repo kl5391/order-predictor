@@ -20,42 +20,66 @@ function Instructions() {
           header="&nbsp;Step 2: Click on Reports and Statements"
           style={{ textAlign: "left", marginBottom: ".25em" }}
         >
-          <Image src="./outlined-menu.png" width="500" />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexFlow: "row wrap",
+            }}
+          >
+            <Image src="./outlined-menu.png" width="500" />
+          </div>
         </AccordionTab>
         <AccordionTab
           header="&nbsp;Step 3: Select desired options. Then press Generate Report"
           style={{ textAlign: "left", marginBottom: ".25em" }}
         >
-          <div>
-            <Image src="./highlighted-generate.png" width="500" />
-          </div>
-          <p
+          <div
             style={{
-              width: 500,
-              textAlign: "center",
-              fontWeight: "bold",
+              display: "flex",
+              justifyContent: "center",
+              flexFlow: "row wrap",
             }}
           >
-            After doing this, it may take some time for your report to be
-            generated. You will recieve notification via email and push
-            notification on phone once your report is ready for you.
-          </p>
+            <div>
+              <Image src="./highlighted-generate.png" width="500" />
+            </div>
+            <p
+              style={{
+                width: 500,
+                textAlign: "center",
+                fontWeight: "bold",
+              }}
+            >
+              After doing this, it may take some time for your report to be
+              generated. You will recieve notification via email and push
+              notification on phone once your report is ready for you.
+            </p>
+          </div>
         </AccordionTab>
         <AccordionTab
           header="&nbsp;Step 4: Once ready, click on the Download CSV button"
           style={{ textAlign: "left", marginBottom: ".25em" }}
         >
-          <Image src="./download-highlighted.png" width="500" />
-          <p
+          <div
             style={{
-              width: 500,
-              textAlign: "center",
-              fontWeight: "bold",
+              display: "flex",
+              justifyContent: "center",
+              flexFlow: "row wrap",
             }}
           >
-            After doing this, you can proceed to the next step in this process:
-            Uploading your newly generated CSV File.
-          </p>
+            <Image src="./download-highlighted.png" width="500" />
+            <p
+              style={{
+                width: 500,
+                textAlign: "center",
+                fontWeight: "bold",
+              }}
+            >
+              After doing this, you can proceed to the next step in this
+              process: Uploading your newly generated CSV File.
+            </p>
+          </div>
         </AccordionTab>
       </Accordion>
     </div>

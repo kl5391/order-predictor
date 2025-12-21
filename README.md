@@ -12,5 +12,3 @@
 - Modular project structure (separate API and UI folders) for easier maintenance and updates
 
 ## Demo
-
-#### Coming soon
