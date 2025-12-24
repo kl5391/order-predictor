@@ -10,5 +10,3 @@
 - Frontend built with React.js
 - Integration with a GEMINI API to analyze user data and suggest viable stocks/orders
 - Modular project structure (separate API and UI folders) for easier maintenance and updates
-
-## Demo
