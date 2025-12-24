@@ -10,6 +10,7 @@
 - Frontend built with React.js
 - Integration with a GEMINI API to analyze user data and suggest viable stocks/orders
 - Modular project structure (separate API and UI folders) for easier maintenance and updates
+- Live data on stocks with YFinance python library
 
 ## Demo
 https://github.com/user-attachments/assets/436a3daa-263d-4b00-bcf7-697b06164ba6
